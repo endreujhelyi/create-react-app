@@ -1,21 +1,53 @@
 import React from 'react';
 import { Query } from 'react-apollo';
 import { cloneDeep } from 'lodash';
+import styled from 'styled-components';
 
+import { Error, Loading } from './Main';
 import client from '../client';
 import { GET_COUNTRIES } from '../graphql';
+import colors from '../style/colors';
 
+
+const Title = styled.h1`
+	color: ${colors.black};
+	font-size: 1.5rem;
+	margin-bottom: 1rem;
+`;
+
+const CountryTitle = styled.span`
+	font-weight: bold;
+`;
+
+const Row = styled.p`
+	font-size: 1rem;
+	margin: 0;
+
+	i {
+		font-size: 0.8rem;
+	}
+`;
+
+const Wrapper = styled.div`
+	padding: 0.5rem;
+	background-color: ${colors.green};
+	border-radius: 4px;
+
+	&:not(:last-of-type) {
+		margin-bottom: 0.5rem;
+	}
+`;
 
 export default function Countries() {
 	return (
 		<Query query={GET_COUNTRIES} client={client}>
 			{({ loading, error, data }) => {
 				if (loading) {
-					return <p>Loading...</p>;
+					return <Loading>Loading...</Loading>;
 				}
 
 				if (error) {
-					return <p>{error.message}</p>;
+					return <Error>{error.message}</Error>;
 				}
 
 				// clone data.countries object to avoid mutating
@@ -33,28 +65,34 @@ export default function Countries() {
 						return acc;
 					}, [])
 
-					country.languages = languages[0];
+					country.languages = languages;
 					return country;
 				});
-
 				return (
-					<div>
+					<React.Fragment>
+						<Title>Countries</Title>
 						{countriesWithLanguages.map(country => {
 							return (
-								<div key={country.name}>
-									<span>{country.name}</span>
-									<span>{country.native}</span>
-									{country.languages &&
-										<div>
-											<span>{country.languages.name}</span>
-											<span>{country.languages.native}</span>
-										</div>
+								<Wrapper key={country.name}>
+									<Row><CountryTitle>Name:</CountryTitle> {country.name} <i>{`(${country.native})`}</i></Row>
+									{country.languages && country.languages.length
+										? <Row>
+											<CountryTitle>Language: </CountryTitle>
+											{country.languages.map((lang, index) => {
+												return (
+													<React.Fragment>
+														{lang.name} <i>{`(${lang.native})`}</i>{index < country.languages.length - 1 ? ' • ' : ''}
+													</React.Fragment>
+												)
+											})}
+										</Row>
+										: <Row><CountryTitle>Language: </CountryTitle>n/a</Row>
 									}
-									<span>{country.continent.name}</span>
-								</div>
+									<Row><CountryTitle>Continent:</CountryTitle> {country.continent.name}</Row>
+								</Wrapper>
 							)
 						})}
-					</div>
+					</React.Fragment>
 				);
 			}}
 		</Query>

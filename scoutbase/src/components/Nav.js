@@ -5,9 +5,14 @@ import colors from '../style/colors';
 
 const Company = styled.a`
 	color: ${colors.white};
-	font-size: 30px;
+	font-size: 2rem;
 	font-weight: bold;
 	text-decoration: none;
+`;
+
+const Wrapper = styled.div`
+	max-width: 1400px;
+	margin: 0 auto;
 `;
 
 const Container = styled.div`
@@ -19,7 +24,9 @@ const Container = styled.div`
 export default function Nav() {
 	return (
 		<Container>
-			<Company href="/">SCOUTBASE</Company>
+			<Wrapper>
+				<Company href="/">SCOUTBASE</Company>
+			</Wrapper>
 		</Container>
 	)
 }
