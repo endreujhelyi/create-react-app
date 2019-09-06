@@ -7,3 +7,22 @@ export const GET_CODE = gql`
 		}
   	}
 `;
+
+export const GET_COUNTRIES = gql`
+	{
+		countries {
+			continent {
+				name
+			}
+			name
+			native
+			languages {
+				name
+			}
+		}
+		languages {
+			name
+			native
+		}
+	}
+`;

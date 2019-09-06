@@ -23,7 +23,7 @@ export default function Main() {
 						return (
 							<div>
 								{data.countries.map(country => {
-									return <a key={country.code} href={`/country/${country.code}`}>{country.code}</a>;
+									return <a key={country.code} href={`/countries/${country.code}`}>{country.code}</a>;
 								})}
 							</div>
 						);

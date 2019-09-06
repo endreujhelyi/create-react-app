@@ -1,3 +1,4 @@
 import Main from './Main';
+import Countries from './Countries';
 
-export { Main };
+export { Countries, Main };
