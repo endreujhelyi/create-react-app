@@ -1,6 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Route } from "react-router-dom";
-import { Countries, Main } from './components';
+import { Countries, Country, Main } from './components';
 
 import './App.css';
 
@@ -9,6 +9,7 @@ function App() {
 		<Router>
 			<Route exact path="/" component={Main}/>
 			<Route exact path="/countries" component={Countries}/>
+			<Route exact path="/countries/:code" component={Country}/>
 		</Router>
 	)
 }

@@ -4,6 +4,7 @@ import { Query } from 'react-apollo';
 import client from '../client';
 import { GET_CODE } from '../graphql';
 
+
 export default function Main() {
 	return (
 		<div>

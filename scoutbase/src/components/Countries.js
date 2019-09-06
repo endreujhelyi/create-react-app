@@ -5,7 +5,8 @@ import { cloneDeep } from 'lodash';
 import client from '../client';
 import { GET_COUNTRIES } from '../graphql';
 
-export default function Main() {
+
+export default function Countries() {
 	return (
 		<Query query={GET_COUNTRIES} client={client}>
 			{({ loading, error, data }) => {

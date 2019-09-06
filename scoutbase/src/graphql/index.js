@@ -26,3 +26,13 @@ export const GET_COUNTRIES = gql`
 		}
 	}
 `;
+
+export const GET_COUNTRY = gql`
+	  query country($code: String!) {
+		country(code: $code) {
+			name
+			phone
+			currency
+		  }
+	  }
+`;
