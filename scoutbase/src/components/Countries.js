@@ -68,6 +68,7 @@ export default function Countries() {
 					country.languages = languages;
 					return country;
 				});
+
 				return (
 					<React.Fragment>
 						<Title>Countries</Title>

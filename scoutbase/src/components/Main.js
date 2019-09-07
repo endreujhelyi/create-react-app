@@ -39,7 +39,7 @@ const Countries = styled.div`
 	}
 `;
 
-const Code = styled.a`
+export const Code = styled.a`
 	display: inline-flex;
 	justify-content: center;
 	align-items: center;
