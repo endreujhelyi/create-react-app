@@ -80,11 +80,13 @@ export default function Countries() {
 										? <Row>
 											<CountryTitle>Language: </CountryTitle>
 											{country.languages.map((lang, index) => {
-												return (
-													<React.Fragment>
-														{lang.name} <i>{`(${lang.native})`}</i>{index < country.languages.length - 1 ? ' • ' : ''}
-													</React.Fragment>
-												)
+												if (lang.name) {
+													return (
+														<React.Fragment key={index}>
+															{lang.name} <i>{`(${lang.native})`}</i>{index < country.languages.length - 1 ? ' • ' : ''}
+														</React.Fragment>
+													)
+												}
 											})}
 										</Row>
 										: <Row><CountryTitle>Language: </CountryTitle>n/a</Row>
